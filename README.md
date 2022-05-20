@@ -1,2 +1,2 @@
 # sprintsd
-Google cloud run service discovery
+A simple google cloud run service discovery

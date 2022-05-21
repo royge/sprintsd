@@ -7,8 +7,8 @@ import (
 )
 
 type Firestore struct {
-	Client     *firestore.Client
-	Collection string
+	client     *firestore.Client
+	collection string
 }
 
 func NewFirestore(client *firestore.Client, collection string) *Firestore {
@@ -21,8 +21,8 @@ func NewFirestore(client *firestore.Client, collection string) *Firestore {
 	}
 
 	return &Firestore{
-		Client:     client,
-		Collection: collection,
+		client:     client,
+		collection: collection,
 	}
 }
 

@@ -17,3 +17,6 @@ vendor/
 # Vim temporary files
 .swp
 .*.swp
+
+# Environment variables
+.envrc*

@@ -2,7 +2,7 @@ package sprintsd
 
 import "context"
 
-type Discovery struct{
+type Discovery struct {
 	store Store
 }
 
@@ -27,6 +27,10 @@ func (d *Discovery) Locate(ctx context.Context, name string) (
 	return r, nil
 }
 
+func (d *Discovery) Forget(ctx context.Context, name string) error {
+	return d.store.Delete(ctx, name)
+}
+
 type Registration struct {
 	Name    string `json:"name"`
 	Address string `json:"address"`
@@ -36,4 +40,5 @@ type Registration struct {
 type Store interface {
 	Save(context.Context, *Registration) error
 	Query(context.Context, string) (*Registration, error)
+	Delete(context.Context, string) error
 }

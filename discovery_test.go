@@ -90,6 +90,38 @@ func Test_Discovery_Locate(t *testing.T) {
 	})
 }
 
+func Test_Discovery_Forget(t *testing.T) {
+	store := new(mockStore)
+	defer store.AssertExpectations(t)
+
+	d := sprintsd.NewDiscovery(store)
+	ctx := context.Background()
+
+	reg := &sprintsd.Registration{
+		Name:    "myservice",
+		Address: "http://localhost",
+		Port:    80,
+	}
+
+	t.Run("found", func(t *testing.T) {
+		store.On("Delete", ctx, reg.Name).Return(nil).Once()
+
+		err := d.Forget(ctx, reg.Name)
+		if err != nil {
+			t.Fatalf("unable to forget enrolled service: %v", err)
+		}
+	})
+
+	t.Run("not found", func(t *testing.T) {
+		store.On("Delete", ctx, reg.Name).Return(errors.New("not found")).Once()
+
+		err := d.Forget(ctx, reg.Name)
+		if err == nil {
+			t.Fatal("unexpected nil error")
+		}
+	})
+}
+
 type mockStore struct {
 	mock.Mock
 }
@@ -109,4 +141,8 @@ func (m *mockStore) Query(ctx context.Context, name string) (
 	}
 
 	return args.Get(0).(*sprintsd.Registration), err
+}
+
+func (m *mockStore) Delete(ctx context.Context, name string) error {
+	return m.Called(ctx, name).Error(0)
 }

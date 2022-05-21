@@ -2,6 +2,7 @@ package sprintsd
 
 import (
 	"context"
+	"errors"
 
 	"cloud.google.com/go/firestore"
 )
@@ -26,14 +27,17 @@ func NewFirestore(client *firestore.Client, collection string) *Firestore {
 	}
 }
 
-func (fs *Firestore) Save(context.Context, *Registration) error {
-	return nil
+func (fs *Firestore) Save(ctx context.Context, reg *Registration) error {
+	doc := fs.client.Collection(fs.collection).Doc(reg.ID)
+	return fs.client.RunTransaction(ctx, func(_ context.Context, tx *firestore.Transaction) error {
+		return tx.Set(doc, reg)
+	})
 }
 
 func (fs *Firestore) Query(context.Context, string) (*Registration, error) {
-	return nil, nil
+	return nil, errors.New("not available")
 }
 
 func (fs *Firestore) Delete(context.Context, string) error {
-	return nil
+	return errors.New("not available")
 }

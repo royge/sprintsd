@@ -32,9 +32,10 @@ func (d *Discovery) Forget(ctx context.Context, name string) error {
 }
 
 type Registration struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
-	Port    uint   `json:"port"`
+	ID      string `json:"id" firestore:"id"`
+	Name    string `json:"name" firestore:"name"`
+	Address string `json:"address" firestore:"address"`
+	Port    int    `json:"port" firestore:"port"`
 }
 
 type Store interface {

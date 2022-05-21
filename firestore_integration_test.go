@@ -14,9 +14,28 @@ import (
 
 func Test_NewFirestore_Integration(t *testing.T) {
 	client := createFirestoreClient(t)
+	defer client.Close()
+
 	fs := sprintsd.NewFirestore(client, "sprintsd-testautomation")
 	if fs == nil {
 		t.Fatal("unexpected nil firestore instance")
+	}
+}
+
+func Test_Firestore_Save_Integration(t *testing.T) {
+	client := createFirestoreClient(t)
+	defer client.Close()
+
+	ctx := context.Background()
+
+	fs := sprintsd.NewFirestore(client, "sprintsd-testautomation")
+	if err := fs.Save(ctx, &sprintsd.Registration{
+		ID: "test-1234",
+		Name: "test",
+		Address: "http://localhost",
+		Port: 80,
+	}); err != nil {
+		t.Errorf("unable to save new registration: %v", err)
 	}
 }
 

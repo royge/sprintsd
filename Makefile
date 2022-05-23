@@ -9,3 +9,6 @@ test:
 integration-test:
 	go mod vendor
 	go test -v ./... -count=1 -failfast -tags=integration
+
+deploy:
+	gcloud run deploy --source .

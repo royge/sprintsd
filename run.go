@@ -9,7 +9,7 @@ import (
 
 	"cloud.google.com/go/compute/metadata"
 	run "cloud.google.com/go/run/apiv2"
-	runpb "google.golang.org/genproto/googleapis/cloud/run/v2"
+	runpb "cloud.google.com/go/run/apiv2/runpb"
 )
 
 var ErrNotAvailable = errors.New("not available")

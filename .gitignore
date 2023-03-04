@@ -20,3 +20,6 @@ vendor/
 
 # Environment variables
 .envrc*
+
+# MacOS
+.DS_Store

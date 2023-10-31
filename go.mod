@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	cloud.google.com/go/compute/metadata v0.2.3
-	cloud.google.com/go/firestore v1.13.0
+	cloud.google.com/go/firestore v1.14.0
 	cloud.google.com/go/run v1.3.0
 	github.com/stretchr/testify v1.8.1
 )

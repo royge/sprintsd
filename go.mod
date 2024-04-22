@@ -3,7 +3,7 @@ module github.com/royge/sprintsd
 go 1.21
 
 require (
-	cloud.google.com/go/compute/metadata v0.2.3
+	cloud.google.com/go/compute/metadata v0.3.0
 	cloud.google.com/go/firestore v1.14.0
 	cloud.google.com/go/run v1.3.3
 	github.com/stretchr/testify v1.9.0
@@ -11,7 +11,6 @@ require (
 
 require (
 	cloud.google.com/go v0.110.9 // indirect
-	cloud.google.com/go/compute v1.23.2 // indirect
 	cloud.google.com/go/iam v1.1.4 // indirect
 	cloud.google.com/go/longrunning v0.5.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

@@ -3,11 +3,11 @@ package sprintsd
 import (
 	"context"
 	"errors"
-	"strings"
 	"fmt"
-	"log"
+	"strings"
 
 	"cloud.google.com/go/compute/metadata"
+
 	run "cloud.google.com/go/run/apiv2"
 	runpb "cloud.google.com/go/run/apiv2/runpb"
 )
@@ -52,7 +52,6 @@ func GetRunServiceURL(ctx context.Context, name string) (string, error) {
 		location,
 		name,
 	)
-	log.Println("service name:", svcName)
 	req := &runpb.GetServiceRequest{
 		Name: svcName,
 	}

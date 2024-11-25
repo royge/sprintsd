@@ -8,7 +8,7 @@ require (
 	cloud.google.com/go/compute/metadata v0.5.1
 	cloud.google.com/go/firestore v1.17.0
 	cloud.google.com/go/run v1.5.1
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
